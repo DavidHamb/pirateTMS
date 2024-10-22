@@ -1,6 +1,5 @@
 from django.db import models
-
-
+from datetime import date
 
 class Target(models.Model):
     name = models.fields.CharField(max_length=100, null=True)
@@ -30,3 +29,13 @@ class Vulnerability(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class Note(models.Model):
+    title = models.fields.CharField(max_length=100, null=True)
+    date = models.fields.DateField(null=False, default=date.today())
+    content = models.fields.CharField(max_length=300, null=True)
+    linked_target = models.ForeignKey(Target, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f'{self.title}'

@@ -1,0 +1,17 @@
+{% extends 'tms/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 style="text-align: center;">Delete the note for {{ target.name }}</h2>
+
+<p style="text-align: center;">
+    Are you sure you want to delete the note "{{ note.title }}" ?
+</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input class="submit_btn" type="submit" value="CONFIRM">
+</form>
+
+{% endblock %}

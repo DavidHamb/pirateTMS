@@ -2,6 +2,17 @@
     font-family: Helvetica;
 }
 
+.flex-container {
+    display: flex;
+  }
+
+.flex-container > div {
+    margin: 10px;
+    border: solid black 1px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+  }
+
 h1 {
     color:green;
 }
@@ -35,3 +46,7 @@ form {
 form label {
     display: none;
 } 
+
+form textarea {
+    height: 500px;
+}

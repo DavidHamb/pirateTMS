@@ -1,5 +1,5 @@
 from django import forms
-from tms.models import Target
+from tms.models import Target, Note
 
 STYLE_PARAMETERS = 'width: 500px; padding: 10px 30px; font-size: 16px;'
 
@@ -34,4 +34,23 @@ class TargetForm(forms.ModelForm):
                 'style': STYLE_PARAMETERS,
                 'placeholder': 'URL'
                 })
+        }
+
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['title', 'content']
+        
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': "form-control",
+                'style': STYLE_PARAMETERS,
+                'placeholder': 'Title',
+                }),
+            'content': forms.Textarea(attrs={
+                'class': "form-control",
+                'style': STYLE_PARAMETERS,
+                'placeholder': 'Write your note ...',
+                }),
         }

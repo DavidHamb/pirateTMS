@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from tms.models import Target
-from tms.forms import TargetForm
+from tms.models import Target, Note
+from tms.forms import TargetForm, NoteForm
 
 # Create your views here.
 
@@ -11,7 +11,8 @@ def targets(request):
 
 def target_detail(request, id):
     target = Target.objects.get(id=id)
-    return render(request, 'tms/target_detail.html', {'target': target})
+    notes = Note.objects.filter(linked_target=target.id)
+    return render(request, 'tms/target_detail.html', {'target': target, 'notes':notes})
 
 
 def targets_add(request):
@@ -40,14 +41,48 @@ def target_update(request, id):
     return render(request, 'tms/target_update.html', {'form':form})
 
 
+
 def target_delete(request, id):
     target = Target.objects.get(id=id)
 
     if request.method == 'POST':
         target.delete()
         return redirect('targets')
-        
+
     return render(request, 'tms/target_delete.html', {'target':target})
+
+
+
+def add_note(request, id):
+    target = Target.objects.get(id=id)
+    form = NoteForm()
+
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+
+            # Save form data AND the linked target (as hidden value)
+            temporary_completion = form.save(commit=False)
+            temporary_completion.linked_target = target
+            temporary_completion.save()
+            target.save()
+            return redirect('target-detail', target.id)
+    else:
+        form = NoteForm()
+
+    return render(request, 'tms/add_note.html', {'form': form, 'target': target}) 
+
+
+
+def delete_note(request, id):
+    note = Note.objects.get(id=id)
+    target = Target.objects.get(id=note.linked_target_id)
+
+    if request.method == 'POST':
+        note.delete()
+        return redirect('target-detail', target.id)
+    
+    return render(request, 'tms/delete_note.html', {'note': note, 'target': target})
 
 
 

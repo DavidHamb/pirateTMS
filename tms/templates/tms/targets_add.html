@@ -1,0 +1,13 @@
+{% extends 'tms/base.html' %}
+
+{% block content %}
+
+<h2 style="text-align: center;">Add a new target</h2>
+
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="SAVE">
+  </form>
+
+{% endblock %}

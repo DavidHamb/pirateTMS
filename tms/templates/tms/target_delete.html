@@ -1,0 +1,14 @@
+{% extends 'tms/base.html' %}
+
+{% block content %}
+
+<h2 style="text-align: center;">Delete the target</h2>
+
+<p>Do you really want to delete the target {{ target.name }}?</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="CONFIRM">
+</form>
+
+{% endblock %}

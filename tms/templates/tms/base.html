@@ -6,6 +6,9 @@
         <link rel="stylesheet" href="{% static 'tms/styles.css' %}" />
     </head>
     <body>
+        <nav>
+            <a href="{% url 'targets' %}">Targets</a>
+        </nav>
 
         {% block content %}{% endblock %}
 

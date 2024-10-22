@@ -1,0 +1,18 @@
+{% extends 'tms/base.html' %}
+
+{% block content %}
+
+<h2>{{ target.name }}</h2>
+
+<a href="{% url 'target-update' target.id %}">Edit</a>
+<a href="{% url 'target-delete' target.id %}">Delete</a>
+
+<ul>
+    <li>URL : {{ target.url }}</li>
+    <li>IP address : {{ target.ip }}</li>
+    <li>Hostname : {{ target.hostname }}</li>
+</ul>
+
+<p>{{ target.description }}</p>
+
+{% endblock %}

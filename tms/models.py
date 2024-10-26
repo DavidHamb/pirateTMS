@@ -4,7 +4,7 @@ from datetime import date
 class Target(models.Model):
     name = models.fields.CharField(max_length=100, null=True)
     url = models.fields.URLField(null=True)
-    description = models.fields.CharField(max_length=200, null=True)
+    description = models.fields.CharField(max_length=500, null=True)
     ip = models.fields.CharField(max_length=15, null=True)
     hostname = models.fields.CharField(max_length=100, null=True)
 
@@ -34,7 +34,7 @@ class Vulnerability(models.Model):
 class Note(models.Model):
     title = models.fields.CharField(max_length=100, null=True)
     date = models.fields.DateField(null=False, default=date.today())
-    content = models.fields.CharField(max_length=300, null=True)
+    content = models.fields.CharField(max_length=500, null=True)
     linked_target = models.ForeignKey(Target, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

@@ -2,45 +2,108 @@
     font-family: Helvetica;
 }
 
+nav {
+    background: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+}
+
+nav a {
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+nav a:hover {
+    color: grey;
+}
+
+.submenu a, form .button {
+    background:grey;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.submenu a:hover, form .button:hover {
+    background: black;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+ul {
+    list-style-type: none;
+}
+
 .flex-container {
     display: flex;
   }
 
 .flex-container > div {
     margin: 10px;
-    border: solid black 1px;
+    border: solid grey 1px;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
   }
 
-h1 {
-    color:green;
+.notes_sep hr {
+    border: 1px solid lightgrey;
+}
+
+.note_content{
+    font-size: 14px;
 }
 
 table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
 }
 
-td, th {
-    border: 1px solid #cceeff;
+th {
+    border: 1px solid lightgrey;
     text-align: left;
     padding: 8px;
+    background-color: black;
+    color:white;
+  }
+
+td {
+    border: 1px solid lightgrey;
+    text-align: left;
+    padding: 6px;
+    font-size: 14px;
   }
 
 tr:nth-child(even) {
-    background-color: #cceeff;
+    background-color: lightgrey;
   }
 
+/*
 tr:hover {
-    background-color: #dddddd;
+    background-color: orange;
 }
+*/
 
 form {
     margin-right: auto;
     margin-left: auto;
     width: 500px;
     text-align: center;
+    border: 1px solid lightgrey;
+    padding: 20px;
+    background-color: lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
 }
 
 form label {
@@ -48,5 +111,11 @@ form label {
 } 
 
 form textarea {
-    height: 500px;
+    height: 350px;
+}
+
+.vuln_list {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
 }

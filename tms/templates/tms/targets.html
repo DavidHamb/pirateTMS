@@ -4,21 +4,20 @@
 
         <h1>Targets</h1>
 
-        <p><a href="{% url 'targets-add' %}">Add a new target</a></p>
+        <p>
+            <span class="submenu"><a href="{% url 'targets-add' %}">Add a new target</a></span>
+        </p>
+        <hr><br>
 
         <table>
             <tr>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
             </tr>
             {% for target in targets %}
                 <tr>
                     <td><a href="{% url 'target-detail' target.id %}">{{target.name}}</a></td>
-                    <td>{{target.description}}</td>
-                    <td><a href="{% url 'target-update' target.id %}">Edit</a></td>
-                    <td><a href="{% url 'target-delete' target.id %}">Delete</a></td>      
+                    <td>{{target.description|truncatechars:200}}</td>     
                 </tr>
             {% endfor %}
         </table>

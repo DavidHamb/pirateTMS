@@ -11,4 +11,6 @@ urlpatterns = [
     path('target_detail/<int:id>/delete/', views.target_delete, name='target-delete'),
     path('target_detail/<int:id>/add_note/', views.add_note, name='add-note'),
     path('delete_note/<int:id>/', views.delete_note, name='delete-note'),
+    path('vulnerabilities/', views.vulnerabilities, name='vulnerabilities'),
+    path('vulnerabilities/add/', views.vulnerabilities_add, name='vulnerabilities-add'),
 ]

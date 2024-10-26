@@ -2,30 +2,42 @@
 
 {% block content %}
 
-<h2>{{ target.name }}</h2>
+<h2>{{ target.name|upper }}</h2>
 
-<a href="{% url 'add-note' target.id %}">Add a note</a>
-<a href="{% url 'target-update' target.id %}">Edit</a>
-<a href="{% url 'target-delete' target.id %}">Delete</a>
+<div class="submenu">
+    <p>
+        <a href="{% url 'add-note' target.id %}">Add a note</a>
+        <a href="{% url 'target-update' target.id %}">Edit</a>
+        <a href="{% url 'target-delete' target.id %}">Delete</a>
+    </p>
+</div>
+<hr>
 
 <div class="flex-container">
-    <div style="flex-basis: 40%;">
+    <div style="flex-basis: 40%; background-color: lightgrey;">
         <h3>Description</h3>
+        <hr>
         <ul>
-            <li>URL : <a href="{{ target.url }}" target="_blank">{{ target.url }}</a></li>
-            <li>IP address : {{ target.ip }}</li>
-            <li>Hostname : {{ target.hostname }}</li>
+            <li><strong>URL</strong> : <a href="{{ target.url }}" target="_blank">{{ target.url }}</a></li>
+            <li><strong>IP address</strong> : {{ target.ip }}</li>
+            <li><strong>Hostname</strong> : {{ target.hostname }}</li>
         </ul>
 
-        <p>{{ target.description }}</p>
+        <p>{{ target.description|linebreaks }}</p>
     </div>
     <div style="flex-basis: 60%;">
         <h3>Notes</h3>
+        <hr>
         {% for note in notes %}
-            <hr>
-            <strong>{{ note.title }}</strong> <a href="{% url 'delete-note' note.id %}">[Delete]</a><br>
-            {{ note.date }}<br>
-            {{ note.content }}
+            <strong>{{ note.title }}</strong>
+            <span class="notes_features" style="font-size: 10px;">
+                {{ note.date }}  
+                <a href="{% url 'delete-note' note.id %}" >[Delete]</a><br>
+            </span>
+            <div class="note_content">
+                <p>{{ note.content|linebreaks }}</p>
+            </div>
+            <span class="notes_sep"><hr></span>
         {% endfor %}
     </div>
 </div>

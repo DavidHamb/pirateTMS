@@ -1,0 +1,19 @@
+{% extends 'tms/base.html' %}
+
+{% block content %}
+
+        <h1>Vulnerabilities</h1>
+
+        <p><a href="{% url 'vulnerabilities-add' %}">Add a new vulnerability</a></p>
+
+            {% for vulnerability in vulnerabilities %}
+                <div class="vuln_list">
+                    <strong>{{ vulnerability.name }}</strong><br>
+                    <a href="{{ vulnerability.url }}" target="_blank">{{ vulnerability.url }}</a><br>
+                    <p>{{ vulnerability.description }}</p>
+                    <hr>
+                </div>
+
+            {% endfor %}
+        
+{% endblock %}

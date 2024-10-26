@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from tms.models import Target, Note
-from tms.forms import TargetForm, NoteForm
+from tms.models import Target, Note, Vulnerability
+from tms.forms import TargetForm, NoteForm, VulnerabilityForm
 
 # Create your views here.
 
@@ -85,7 +85,19 @@ def delete_note(request, id):
     return render(request, 'tms/delete_note.html', {'note': note, 'target': target})
 
 
+def vulnerabilities(request):
+    vulnerabilities = Vulnerability.objects.all()
+    return render(request, 'tms/vulnerabilities.html', {'vulnerabilities' : vulnerabilities})
 
 
 
+def vulnerabilities_add(request):
+    if request.method == 'POST':
+        form = VulnerabilityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('vulnerabilities')
+    else: 
+        form = VulnerabilityForm()
 
+    return render(request, 'tms/vulnerabilities_add.html', {'form': form})

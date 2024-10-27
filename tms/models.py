@@ -22,9 +22,9 @@ class Vulnerability(models.Model):
         PRIVESC = 'Privesc'
         OTHER = 'Other'
 
-    name = models.fields.CharField(max_length=100, null=True)
+    name = models.fields.CharField(max_length=200, null=True)
     url = models.fields.URLField(null=True)
-    description = models.fields.CharField(max_length=200, null=True)
+    description = models.fields.CharField(max_length=1000, null=True)
     category = models.fields.CharField(choices=Category.choices, max_length=100, null=True)
 
     def __str__(self):

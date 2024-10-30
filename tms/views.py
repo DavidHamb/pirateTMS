@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from tms.models import Target, Note, Vulnerability
-from tms.forms import TargetForm, NoteForm, VulnerabilityForm
+from tms.models import Target, Note, Vulnerability, Ressource
+from tms.forms import TargetForm, NoteForm, VulnerabilityForm, RessourceForm
 
 # Create your views here.
 
@@ -12,6 +12,7 @@ def targets(request):
 def target_detail(request, id):
     target = Target.objects.get(id=id)
     notes = Note.objects.filter(linked_target=target.id)
+    notes = notes.order_by('-id').values()
     return render(request, 'tms/target_detail.html', {'target': target, 'notes':notes})
 
 
@@ -101,3 +102,20 @@ def vulnerabilities_add(request):
         form = VulnerabilityForm()
 
     return render(request, 'tms/vulnerabilities_add.html', {'form': form})
+
+
+def ressources(request):
+    ressources = Ressource.objects.all()
+    return render(request, 'tms/ressources.html', {'ressources' : ressources})
+
+
+def ressources_add(request):
+    if request.method == 'POST':
+        form = RessourceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ressources')
+    else: 
+        form = RessourceForm()
+
+    return render(request, 'tms/ressources_add.html', {'form': form})

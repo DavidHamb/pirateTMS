@@ -4,11 +4,11 @@
 
 <h2 style="text-align: center;">Delete the target</h2>
 
-<p>Do you really want to delete the target {{ target.name }}?</p>
+<p style="text-align: center;">Do you really want to delete the target {{ target.name }}?</p>
 
-<form action="" method="post">
+<form action="" method="post" style="background-color: white; border:none; box-shadow: none;">
     {% csrf_token %}
-    <input type="submit" value="CONFIRM">
+    <input type="submit" value="CONFIRM" class="button">
 </form>
 
 {% endblock %}

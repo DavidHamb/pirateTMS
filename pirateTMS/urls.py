@@ -13,4 +13,6 @@ urlpatterns = [
     path('delete_note/<int:id>/', views.delete_note, name='delete-note'),
     path('vulnerabilities/', views.vulnerabilities, name='vulnerabilities'),
     path('vulnerabilities/add/', views.vulnerabilities_add, name='vulnerabilities-add'),
+    path('ressources/', views.ressources, name='ressources'),
+    path('ressources/add/', views.ressources_add, name='ressources-add'),
 ]

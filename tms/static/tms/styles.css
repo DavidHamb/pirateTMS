@@ -119,3 +119,12 @@ form textarea {
     margin-left: auto;
     width: 80%;
 }
+
+.errorlist {
+    color: red;
+    margin-bottom: -10px;
+}
+
+.hello:hover {
+    background: grey;
+}

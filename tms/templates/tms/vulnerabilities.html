@@ -4,14 +4,20 @@
 
         <h1>Vulnerabilities</h1>
 
-        <p><a href="{% url 'vulnerabilities-add' %}">Add a new vulnerability</a></p>
+        <p>
+            <span class="submenu"><a href="{% url 'vulnerabilities-add' %}">Add a new vulnerability</a></span>
+        </p>
+        <hr><br>
 
             {% for vulnerability in vulnerabilities %}
                 <div class="vuln_list">
-                    <strong>{{ vulnerability.name }}</strong><br>
+                    <strong style="font-size: 17px;">{{ vulnerability.name }}</strong><br>
                     <a href="{{ vulnerability.url }}" target="_blank">{{ vulnerability.url }}</a><br>
-                    <p>{{ vulnerability.description }}</p>
-                    <hr>
+                    {% if vulnerability.cve %}
+                        <p style="color: grey; font-size: 15px;">{{ vulnerability.cve }}</p>
+                    {% endif %}
+                    <p style="font-size: 15px;">{{ vulnerability.description }}</p>
+                    <span class="notes_sep"><hr></span><br>
                 </div>
 
             {% endfor %}

@@ -4,9 +4,9 @@ from datetime import date
 class Target(models.Model):
     name = models.fields.CharField(max_length=100, null=True)
     url = models.fields.URLField(null=True)
-    description = models.fields.CharField(max_length=500, null=True)
+    description = models.fields.CharField(max_length=500, null=True, blank=True)
     ip = models.fields.CharField(max_length=15, null=True)
-    hostname = models.fields.CharField(max_length=100, null=True)
+    hostname = models.fields.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -26,6 +26,7 @@ class Vulnerability(models.Model):
     url = models.fields.URLField(null=True)
     description = models.fields.CharField(max_length=1000, null=True)
     category = models.fields.CharField(choices=Category.choices, max_length=100, null=True)
+    cve = models.fields.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -34,8 +35,18 @@ class Vulnerability(models.Model):
 class Note(models.Model):
     title = models.fields.CharField(max_length=100, null=True)
     date = models.fields.DateField(null=False, default=date.today())
-    content = models.fields.CharField(max_length=500, null=True)
+    content = models.fields.CharField(max_length=600, null=True)
     linked_target = models.ForeignKey(Target, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.title}'
+
+
+
+class Ressource(models.Model):
+    name = models.fields.CharField(max_length=100, null=True)
+    url = models.fields.URLField(null=True)
+    description = models.fields.CharField(max_length=600, null=True)
+
+    def __str__(self):
+        return f'{self.name}'

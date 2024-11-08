@@ -9,9 +9,9 @@
     Are you sure you want to delete the note "{{ note.title }}" ?
 </p>
 
-<form action="" method="post">
+<form action="" method="post" style="background-color: white; border:none; box-shadow: none;">
     {% csrf_token %}
-    <input class="submit_btn" type="submit" value="CONFIRM">
+    <input class="button" type="submit" value="CONFIRM">
 </form>
 
 {% endblock %}

@@ -35,7 +35,7 @@ class Vulnerability(models.Model):
 class Note(models.Model):
     title = models.fields.CharField(max_length=100, null=True)
     date = models.fields.DateField(null=False, default=date.today())
-    content = models.fields.CharField(max_length=600, null=True)
+    content = models.fields.CharField(max_length=1000, null=True)
     linked_target = models.ForeignKey(Target, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

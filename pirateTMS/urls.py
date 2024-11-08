@@ -15,4 +15,5 @@ urlpatterns = [
     path('vulnerabilities/add/', views.vulnerabilities_add, name='vulnerabilities-add'),
     path('ressources/', views.ressources, name='ressources'),
     path('ressources/add/', views.ressources_add, name='ressources-add'),
+    path('checklist/', views.checklist, name='checklist'),
 ]

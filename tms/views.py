@@ -119,3 +119,7 @@ def ressources_add(request):
         form = RessourceForm()
 
     return render(request, 'tms/ressources_add.html', {'form': form})
+
+
+def checklist(request):
+    return render(request, 'tms/checklist.html')

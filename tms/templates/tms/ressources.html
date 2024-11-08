@@ -10,10 +10,10 @@
         <hr><br>
         <div class="flex-container" style="display: flex; flex-wrap: wrap;">
             {% for ressource in ressources %}
-                <div style="background: lightgrey; border: 1px solid grey; width: 15%; height: 150px; padding: 10px; margin: 20px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19); border-radius: 10px;">
+                <div style="background: lightgrey; border: 1px solid grey; width: 15%; height: 200px; padding: 10px; margin: 20px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19); border-radius: 10px;">
                     <strong>{{ ressource.name | upper }}</strong><br>
                     <a href="{{ ressource.url }}" target="_blank" style="font-size: 14px;">{{ ressource.url }}</a><br>
-                    <span style="font-size: 14px;">{{ ressource.description | truncatechars:250 }}</span>
+                    <span style="font-size: 14px;">{{ ressource.description | truncatechars:200 }}</span>
                 </div> 
             {% endfor %}
         </div>

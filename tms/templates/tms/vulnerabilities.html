@@ -7,7 +7,16 @@
         <p>
             <span class="submenu"><a href="{% url 'vulnerabilities-add' %}">Add a new vulnerability</a></span>
         </p>
-        <hr><br>
+        <hr>
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+        <br>
 
             {% for vulnerability in vulnerabilities %}
                 <div class="vuln_list">

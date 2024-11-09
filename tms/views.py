@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from tms.models import Target, Note, Vulnerability, Ressource
 from tms.forms import TargetForm, NoteForm, VulnerabilityForm, RessourceForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -21,6 +22,7 @@ def targets_add(request):
         form = TargetForm(request.POST)
         if form.is_valid():
             target = form.save()
+            messages.add_message(request, messages.INFO, "A new target has been successfully created! You can now edit the details ...")
             return redirect('target-detail', target.id)
     else: 
         form = TargetForm()
@@ -35,6 +37,7 @@ def target_update(request, id):
         form = TargetForm(request.POST, instance=target)
         if form.is_valid:
             form.save()
+            messages.add_message(request, messages.INFO, "The target has been successfully updated ...")
             return redirect('target-detail', target.id)
     else: 
         form = TargetForm(instance=target)
@@ -48,6 +51,7 @@ def target_delete(request, id):
 
     if request.method == 'POST':
         target.delete()
+        messages.add_message(request, messages.INFO, "The target has been deleted ...")
         return redirect('targets')
 
     return render(request, 'tms/target_delete.html', {'target':target})
@@ -81,6 +85,7 @@ def delete_note(request, id):
 
     if request.method == 'POST':
         note.delete()
+        messages.add_message(request, messages.INFO, "The note has been deleted ...")
         return redirect('target-detail', target.id)
     
     return render(request, 'tms/delete_note.html', {'note': note, 'target': target})
@@ -97,6 +102,7 @@ def vulnerabilities_add(request):
         form = VulnerabilityForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.INFO, "A new vulnerability has been added ...")
             return redirect('vulnerabilities')
     else: 
         form = VulnerabilityForm()

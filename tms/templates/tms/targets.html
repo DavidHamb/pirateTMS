@@ -7,7 +7,15 @@
         <p>
             <span class="submenu"><a href="{% url 'targets-add' %}">Add a new target</a></span>
         </p>
-        <hr><br>
+        <hr>
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
 
         <table>
             <tr>

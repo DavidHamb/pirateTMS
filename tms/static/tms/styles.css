@@ -47,13 +47,6 @@ ul {
     display: flex;
   }
 
-.flex-container > div {
-    margin: 10px;
-    border: solid grey 1px;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
-  }
-
 .notes_sep hr {
     border: 1px solid lightgrey;
 }
@@ -137,3 +130,17 @@ form textarea {
 .info {
     color:red;
 }
+
+form.searchbar {
+    width: 300px;
+    text-align: right;
+    padding: 0px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: none;
+    background-color: none;
+    box-shadow: none;
+    background-color: white;
+}
+
+

@@ -20,6 +20,7 @@ class Target(models.Model):
     hostname = models.fields.CharField(max_length=100, null=True, blank=True)
     status = models.fields.CharField(choices=status.choices, max_length=8, default='Intact')
     type = models.fields.CharField(choices=type.choices, max_length=16, default = 'Wild')
+    last_update = models.fields.DateField(null=True, default=date.today())
 
     def __str__(self):
         return f'{self.name}'

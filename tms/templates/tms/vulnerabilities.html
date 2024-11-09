@@ -5,7 +5,15 @@
         <h1>Vulnerabilities</h1>
 
         <p>
-            <span class="submenu"><a href="{% url 'vulnerabilities-add' %}">Add a new vulnerability</a></span>
+            <div class="flex-container">
+                <span class="submenu"><a href="{% url 'vulnerabilities-add' %}">Add a new vulnerability</a></span>
+
+                <form role="search" method="POST" class="searchbar">
+                    {% csrf_token %}
+                    <input type="search" placeholder="Enter any keyword" name="search_query">
+                    <button type="submit">Filter</button>
+                </form>
+            </div>
         </p>
         <hr>
         {% if messages %}
@@ -15,20 +23,19 @@
             {% endfor %}
             </ul>
         {% endif %}
-
         <br>
 
-            {% for vulnerability in vulnerabilities %}
-                <div class="vuln_list">
-                    <strong style="font-size: 17px;">{{ vulnerability.name }}</strong><br>
-                    <a href="{{ vulnerability.url }}" target="_blank">{{ vulnerability.url }}</a><br>
-                    {% if vulnerability.cve %}
-                        <p style="color: grey; font-size: 15px;">{{ vulnerability.cve }}</p>
-                    {% endif %}
-                    <p style="font-size: 15px;">{{ vulnerability.description }}</p>
-                    <span class="notes_sep"><hr></span><br>
-                </div>
+        {% for vulnerability in vulnerabilities %}
+        <div class="vuln_list">
+            <strong style="font-size: 17px;">{{ vulnerability.name }}</strong><br>
+            <a href="{{ vulnerability.url }}" target="_blank">{{ vulnerability.url }}</a><br>
+            {% if vulnerability.cve %}
+                <p style="color: grey; font-size: 15px;">{{ vulnerability.cve }}</p>
+            {% endif %}
+            <p style="font-size: 15px;">{{ vulnerability.description }}</p>
+            <span class="notes_sep"><hr></span><br>
+        </div>
+        {% endfor %}
 
-            {% endfor %}
         
 {% endblock %}

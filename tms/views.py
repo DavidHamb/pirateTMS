@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from tms.models import Target, Note, Vulnerability, Ressource
 from tms.forms import TargetForm, NoteForm, VulnerabilityForm, RessourceForm
 from django.contrib import messages
+from datetime import date
 
 # Create your views here.
 
 def targets(request):
     targets = Target.objects.all()
+    targets = targets.order_by('-last_update').values()
     return render(request, 'tms/targets.html', {'targets' : targets})
 
 
@@ -36,6 +38,8 @@ def target_update(request, id):
     if request.method == "POST":
         form = TargetForm(request.POST, instance=target)
         if form.is_valid:
+            target.last_update = date.today()
+            target.save()
             form.save()
             messages.add_message(request, messages.INFO, "The target has been successfully updated ...")
             return redirect('target-detail', target.id)
@@ -70,6 +74,7 @@ def add_note(request, id):
             temporary_completion = form.save(commit=False)
             temporary_completion.linked_target = target
             temporary_completion.save()
+            target.last_update = date.today()
             target.save()
             return redirect('target-detail', target.id)
     else:
@@ -84,6 +89,8 @@ def delete_note(request, id):
     target = Target.objects.get(id=note.linked_target_id)
 
     if request.method == 'POST':
+        target.last_update = date.today()
+        target.save()
         note.delete()
         messages.add_message(request, messages.INFO, "The note has been deleted ...")
         return redirect('target-detail', target.id)
@@ -93,6 +100,7 @@ def delete_note(request, id):
 
 def vulnerabilities(request):
     vulnerabilities = Vulnerability.objects.all()
+    vulnerabilities = vulnerabilities.order_by('-id').values()
     return render(request, 'tms/vulnerabilities.html', {'vulnerabilities' : vulnerabilities})
 
 

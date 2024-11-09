@@ -22,20 +22,24 @@
 {% endif %}
 
 <div class="flex-container">
-    <div style="flex-basis: 40%; background-color: lightgrey;">
+    <div style="flex-basis: 40%; background-color: lightgrey; margin: 10px; border: solid grey 1px; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);">
         <h3>Description</h3>
         <hr>
         <ul>
-            <li><strong>URL</strong> : <a href="{{ target.url }}" target="_blank">{{ target.url }}</a></li>
-            <li><strong>IP address</strong> : {{ target.ip }}</li>
-            <li><strong>Hostname</strong> : {{ target.hostname }}</li>
-            <li><strong>Type</strong> : {{ target.type }}</li>
-            <li><strong>Status</strong> : {{ target.status }}</li>
+            <li><strong>URL</strong> : <a href="{{ target.url }}" target="_blank">{{ target.url }}</a></li><br>
+            <li><strong>IP address</strong> : {{ target.ip }}</li><br>
+            <li><strong>Hostname</strong> : {{ target.hostname }}</li><br>
+            <li><strong>Type</strong> : {{ target.type }}</li><br>
+            <li><strong>Status</strong> : {{ target.status }}</li><br>
+            <li><strong>Last update</strong> : {{ target.last_update }}</li><br>
         </ul>
 
-        <p>{{ target.description|linebreaks }}</p>
+        {% if target.description %}
+            <p>{{ target.description|linebreaks }}</p>
+        {% endif %}
+
     </div>
-    <div style="flex-basis: 60%;">
+    <div style="flex-basis: 60%; margin: 10px; border: solid grey 1px; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);">
         <h3>Notes</h3>
         <hr>
         {% for note in notes %}

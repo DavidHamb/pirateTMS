@@ -2,11 +2,24 @@ from django.db import models
 from datetime import date
 
 class Target(models.Model):
+
+    class status(models.TextChoices):
+        INTACT = 'Intact'
+        FOOTHOLD = 'Foothold'
+        ROOTED = 'Rooted'
+
+    class type(models.TextChoices):
+        CAPTURE_THE_FLAG = 'Capture the Flag'
+        IN_THE_WILD = 'In the Wild'
+        BUG_BOUNTY = 'Bug Bounty' 
+
     name = models.fields.CharField(max_length=100, null=True)
     url = models.fields.URLField(null=True)
     description = models.fields.CharField(max_length=500, null=True, blank=True)
     ip = models.fields.CharField(max_length=15, null=True)
     hostname = models.fields.CharField(max_length=100, null=True, blank=True)
+    status = models.fields.CharField(choices=status.choices, max_length=8, default='Intact')
+    type = models.fields.CharField(choices=type.choices, max_length=16, default = 'Wild')
 
     def __str__(self):
         return f'{self.name}'

@@ -6,14 +6,116 @@
 
         <hr><br>
 
-        <table>
+        <h2 style="text-align: center;">Enumeration</h2>
+
+        <table style="width: 60%;">
             <tr>
                 <th>Steps</th>
                 <th>Snippets</th>
             </tr>
+            <tr style="background-color: white;">
+                <td>Finding new <strong>subdomains</strong> ...</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Can I learn something with the <strong>favicon</strong> ?</td>
+                <td></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>Explore</strong> service features and user interactions</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>Inspect</strong> headers and cookies</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Review the <strong>source code</strong> (comments, new endpoints ...)</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>A <strong>robots.txt</strong> is available ?</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Listing new <strong>directories</strong> ?</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+        </table>
+
+        <h2 style="text-align: center;">New service found ?</h2>
+
+        <table style="width: 60%;">
             <tr>
-                <td>The first step</td>
-                <td>The first snippet</td>     
+                <th>Steps</th>
+                <th>Snippets</th>
+            </tr>
+            <tr style="background-color: white;">
+                <td>What's the <strong>version</strong> ?</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>What are the <strong>default credentials<strong (if a login is needed) ?</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Does the service appears in <strong>searchploit</strong> DB (or metasploit) ?</td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>Googling</strong> eventual exploits ?</td>
+                <td><span class="snippet">service version exploit</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>
+                    Read the <strong>docs</strong> :
+                    <ul>
+                        <li>Identify dependencies</li>
+                        <li>Default creds</li>
+                        <li>Security</li>
+                        <li>Quick usage</li>
+                        <li>Source code</li>
+                    </ul>
+                </td>
+                <td><span class="snippet"></span></td>     
+            </tr>
+        </table>
+
+        <h2 style="text-align: center;">Privesc (Linux)</h2>
+
+        <table style="width: 60%;">
+            <tr>
+                <th>Steps</th>
+                <th>Snippets</th>
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>Sudo</strong> rights ?</td>
+                <td><span class="snippet">sudo -l</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Can't you find <strong>SUID</strong> ?</td>
+                <td><span class="snippet">find / -perm -u=s 2>/dev/null</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Some <strong>planified tasks</strong> ?</td>
+                <td>
+                    <span class="snippet">crontab -l</span><br>
+                    <span class="snippet">cat /etc/crontab</span>
+                </td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Some <strong>capabilities</strong> ?</td>
+                <td><span class="snippet">getcap / -r 2>/dev/null</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>Some <strong>new services</strong> accessible with localhost ?</td>
+                <td><span class="snippet">netstat -antp</span></td>     
+            </tr>
+            <tr>
+                <td>
+                    Any new ideas for escalating privileges ? See <strong><a href="https://github.com/peass-ng/PEASS-ng/releases/" target="_blank">linpeas.sh</a></strong>
+                </td>
+                <td></td>
             </tr>
         </table>
         

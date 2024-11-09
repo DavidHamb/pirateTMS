@@ -128,3 +128,8 @@ form textarea {
 .hello:hover {
     background: grey;
 }
+
+.snippet {
+    color: grey;
+    font-style: italic;
+}

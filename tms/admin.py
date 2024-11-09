@@ -2,7 +2,7 @@ from django.contrib import admin
 from tms.models import Target, Vulnerability, Note, Ressource
 
 class TargetAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'description', 'ip', 'hostname')
+    list_display = ('name', 'url', 'description', 'ip', 'hostname', 'status', 'type')
 
 class VulnerabilityAdmin(admin.ModelAdmin):
     list_display = ('name', 'url', 'description', 'category', 'cve')

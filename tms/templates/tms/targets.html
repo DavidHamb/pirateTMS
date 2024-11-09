@@ -12,11 +12,15 @@
         <table>
             <tr>
                 <th>Name</th>
+                <th>Type</th>
+                <th>Status</th>
                 <th>Description</th>
             </tr>
             {% for target in targets %}
                 <tr>
                     <td><a href="{% url 'target-detail' target.id %}">{{target.name}}</a></td>
+                    <td>{{ target.type }}</td>
+                    <td>{{ target.status }}</td>
                     <td>{{target.description|truncatechars:200}}</td>     
                 </tr>
             {% endfor %}

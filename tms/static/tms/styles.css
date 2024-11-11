@@ -111,7 +111,7 @@ form textarea {
 .vuln_list {
     margin-right: auto;
     margin-left: auto;
-    width: 80%;
+    width: 100%;
 }
 
 .errorlist {
@@ -133,15 +133,14 @@ form textarea {
 }
 
 form.searchbar {
-    width: 300px;
+    width: 10%;
     text-align: right;
     padding: 0px;
     margin-right: 10px;
-    margin-left: 10px;
+    margin-left: 0px;
     border: none;
-    background-color: none;
     box-shadow: none;
-    background-color: white;
+    background-color: lightgrey;
 }
 
 

@@ -100,6 +100,13 @@ def delete_note(request, id):
 
 def vulnerabilities(request):
     vulnerabilities = Vulnerability.objects.all()
+
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        vulnerabilities =  Vulnerability.objects.filter(name__contains=search_query) | Vulnerability.objects.filter(description__contains=search_query) | Vulnerability.objects.filter(cve__contains=search_query) | Vulnerability.objects.filter(category__contains=search_query) 
+        vulnerabilities = vulnerabilities.order_by('-id').values()
+        return render(request, 'tms/vulnerabilities.html', {'vulnerabilities': vulnerabilities, 'query': search_query})
+    
     vulnerabilities = vulnerabilities.order_by('-id').values()
     return render(request, 'tms/vulnerabilities.html', {'vulnerabilities' : vulnerabilities})
 

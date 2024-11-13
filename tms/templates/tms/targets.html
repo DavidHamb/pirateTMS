@@ -8,32 +8,44 @@
             <span class="submenu"><a href="{% url 'targets-add' %}">Add a new target</a></span>
         </p>
         <hr>
-        {% if messages %}
-            <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
         <br>
 
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Description</th>
-                <th>Last update</th>
-            </tr>
-            {% for target in targets %}
-                <tr>
-                    <td><a href="{% url 'target-detail' target.id %}">{{target.name}}</a></td>
-                    <td>{{ target.type }}</td>
-                    <td>{{ target.status }}</td>
-                    <td>{{target.description|truncatechars:180}}</td> 
-                    <td>{{ target.last_update }}</td>    
-                </tr>
-            {% endfor %}
-        </table>
+        <div class="flex-container">
+            <div style="flex-basis: 10%;">
+                <form role="search" method="POST" class="searchbar" style="width: 80%;">
+                    {% csrf_token %}
+                    <input type="search" placeholder="Enter any keyword" name="search_query" class="bar">
+                    <button type="submit" class="filter_button">Filter or reset</button>
+                </form>
+
+                {% if messages %}
+                    <ul class="messages" style="font-size: 12px; padding-left: 0px;">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div style="flex-basis: 90%;">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Last update</th>
+                    </tr>
+                    {% for target in targets %}
+                        <tr>
+                            <td><a href="{% url 'target-detail' target.id %}">{{target.name}}</a></td>
+                            <td>{{ target.type }}</td>
+                            <td>{{ target.status }}</td>
+                            <td>{{target.description|truncatechars:180}}</td> 
+                            <td>{{ target.last_update }}</td>    
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
         
 {% endblock %}

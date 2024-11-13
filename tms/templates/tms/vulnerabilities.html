@@ -6,22 +6,24 @@
 
         <p><span class="submenu"><a href="{% url 'vulnerabilities-add' %}">Add a new vulnerability</a></span></p>
         <hr>
-        {% if messages %}
-            <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
         <br>
 
         <div class="flex-container">
             <div style="flex-basis: 10%;">
-                <form role="search" method="POST" class="searchbar">
+                <form role="search" method="POST" class="searchbar" style="width: 80%;">
                     {% csrf_token %}
-                    <input type="search" placeholder="Enter any keyword" name="search_query">
-                    <button type="submit">Filter</button>
+                    <input type="search" placeholder="Enter any keyword" name="search_query" class="bar">
+                    <button type="submit" class="filter_button">Filter or reset</button>
                 </form>
+                
+                {% if messages %}
+                    <ul class="messages" style="font-size: 12px; padding-left: 0px;">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+
             </div>
             <div style="flex-basis: 90%;">
                 {% for vulnerability in vulnerabilities %}
@@ -37,8 +39,5 @@
                 {% endfor %}
             </div>
         </div>
-
-
-
         
 {% endblock %}

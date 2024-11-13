@@ -4,12 +4,22 @@ from tms.forms import TargetForm, NoteForm, VulnerabilityForm, RessourceForm
 from django.contrib import messages
 from datetime import date
 
-# Create your views here.
+
 
 def targets(request):
     targets = Target.objects.all()
+
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        if search_query != "":
+            targets =  Target.objects.filter(name__contains=search_query) | Target.objects.filter(description__contains=search_query) | Target.objects.filter(type__contains=search_query) | Target.objects.filter(status__contains=search_query) 
+            targets = targets.order_by('-id').values()
+            messages.add_message(request, messages.INFO, str(len(targets))+" result(s) for '"+search_query+"'")
+            return render(request, 'tms/targets.html', {'targets': targets, 'query': search_query})
+
     targets = targets.order_by('-last_update').values()
     return render(request, 'tms/targets.html', {'targets' : targets})
+
 
 
 def target_detail(request, id):
@@ -103,9 +113,11 @@ def vulnerabilities(request):
 
     if request.method == 'POST':
         search_query = request.POST['search_query']
-        vulnerabilities =  Vulnerability.objects.filter(name__contains=search_query) | Vulnerability.objects.filter(description__contains=search_query) | Vulnerability.objects.filter(cve__contains=search_query) | Vulnerability.objects.filter(category__contains=search_query) 
-        vulnerabilities = vulnerabilities.order_by('-id').values()
-        return render(request, 'tms/vulnerabilities.html', {'vulnerabilities': vulnerabilities, 'query': search_query})
+        if search_query != "":
+            vulnerabilities =  Vulnerability.objects.filter(name__contains=search_query) | Vulnerability.objects.filter(description__contains=search_query) | Vulnerability.objects.filter(cve__contains=search_query) | Vulnerability.objects.filter(category__contains=search_query) 
+            vulnerabilities = vulnerabilities.order_by('-id').values()
+            messages.add_message(request, messages.INFO, str(len(vulnerabilities))+" result(s) for '"+search_query+"'")
+            return render(request, 'tms/vulnerabilities.html', {'vulnerabilities': vulnerabilities, 'query': search_query})
     
     vulnerabilities = vulnerabilities.order_by('-id').values()
     return render(request, 'tms/vulnerabilities.html', {'vulnerabilities' : vulnerabilities})

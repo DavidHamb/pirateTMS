@@ -56,7 +56,7 @@ ul {
 }
 
 table {
-    width: 90%;
+    width: 100%;
     border-collapse: collapse;
     margin-left: auto;
     margin-right: auto;
@@ -134,13 +134,33 @@ form textarea {
 
 form.searchbar {
     width: 10%;
-    text-align: right;
     padding: 0px;
-    margin-right: 10px;
+    margin-right: 0px;
     margin-left: 0px;
     border: none;
     box-shadow: none;
-    background-color: lightgrey;
+    background-color: white;
+}
+
+.bar {
+    height: 30px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.filter_button {
+    background:grey;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.filter_button:hover{
+    background: black;
 }
 
 

@@ -40,7 +40,7 @@
                             <td><a href="{% url 'target-detail' target.id %}">{{target.name}}</a></td>
                             <td>{{ target.type }}</td>
                             <td>{{ target.status }}</td>
-                            <td>{{target.description|truncatechars:180}}</td> 
+                            <td>{{target.description|truncatechars:170}}</td> 
                             <td>{{ target.last_update }}</td>    
                         </tr>
                     {% endfor %}

@@ -15,7 +15,7 @@ class Target(models.Model):
 
     name = models.fields.CharField(max_length=100, null=True)
     url = models.fields.URLField(null=True)
-    description = models.fields.CharField(max_length=500, null=True, blank=True)
+    description = models.fields.CharField(max_length=1000, null=True, blank=True)
     ip = models.fields.CharField(max_length=15, null=True)
     hostname = models.fields.CharField(max_length=100, null=True, blank=True)
     status = models.fields.CharField(choices=status.choices, max_length=8, default='Intact')

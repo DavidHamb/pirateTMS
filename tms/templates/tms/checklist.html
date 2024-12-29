@@ -4,9 +4,19 @@
 
         <h1>Checklist</h1>
 
-        <hr><br>
+        <p>
+            <span class="submenu"><a href="#enumeration">Enumeration</a></span>
+            <span class="submenu"><a href="#commonvuln">Common web vulnerabilities</a></span>
+            <span class="submenu"><a href="#adenumeration">AD Enumeration</a></span>
+            <span class="submenu"><a href="#newservice">New service found</a></span>
+            <span class="submenu"><a href="#bruteforce">Brute force</a></span>
+            <span class="submenu"><a href="#privesclinux">Privesc Linux</a></span>
+            <span class="submenu"><a href="#privescwindows">Privesc Windows</a></span>
+        </p>
 
-        <h2 style="text-align: center;">Enumeration</h2>
+        <hr><br>
+<!-- Enumeration -->
+        <h2 style="text-align: center;" id="enumeration">Enumeration</h2>
 
         <table style="width: 60%;">
             <tr>
@@ -21,7 +31,10 @@
             </tr>
             <tr style="background-color: white;">
                 <td>Can I learn something with the <strong>favicon</strong> ?</td>
-                <td></td>     
+                <td>
+                    <span class="snippet">curl http://website.com/favicon.ico | md5sum</span><br>
+                    <a href="https://wiki.owasp.org/index.php/OWASP_favicon_database" target="_blank">OWASP Favicon Database</a>
+                </td>     
             </tr>
             <tr style="background-color: white;">
                 <td><strong>Explore</strong> service features and user interactions</td>
@@ -41,11 +54,137 @@
             </tr>
             <tr style="background-color: white;">
                 <td>Listing new <strong>directories</strong> ?</td>
-                <td><span class="snippet"></span></td>     
+                <td><span class="snippet">dirsearch -u http://target_ip -x 404</span></td>     
             </tr>
         </table>
+<!-- Common web vulnerabilities -->
+    <h2 style="text-align: center;" id="commonvuln">Common web vulnerabilities</h2>
+    
+    <table style="width: 60%">
+        <tr>
+            <th>Vulnerability</th>
+            <th>Snippets</th>
+        </tr>
+        <tr style="background-color: white;">
+            <td>Amazon Hosting</td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td>App Logic Error</td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td>Broken Access Control</td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>CSRF</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>IDOR</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td>Insecure deserialization</td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>JWT</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>LFI</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td>Login page</td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>No SQLI</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Open Redirects</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Path Traversal</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Race Conditions</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>RCE</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Same Origin Policy</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Shell Upload</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Single Sign On</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>SQLI</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>SSRF</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Sudomain Takeover</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Template Injection</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Wordpress</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>XSS</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>XXE</strong></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+    </table>
+<!-- Active Directory enumeration-->
+    <h2 style="text-align: center;" id="adenumeration">Active Directory Enumeration</h2>
 
-        <h2 style="text-align: center;">New service found ?</h2>
+    <table style="width: 60%">
+        <tr>
+            <th>Steps</th>
+            <th>Snippets</th>
+        </tr>
+        <tr style="background-color: white;">
+            <td></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td>Brute force an AD service with default user to <strong>obtain a list of users</strong></td>
+            <td><span class="snippet">nxc smb target_ip -u "guest" -p "" --rid-brute</span></td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td></td>
+            <td><span class="snippet"></span></td>     
+        </tr>
+    </table>
+<!-- New service found -->
+        <h2 style="text-align: center;" id="newservice">New service found ?</h2>
 
         <table style="width: 60%;">
             <tr>
@@ -82,13 +221,31 @@
                 <td><span class="snippet"></span></td>     
             </tr>
         </table>
+<!-- Brute force -->
+        <h2 style="text-align: center;" id="bruteforce">Brute force</h2>
 
-        <h2 style="text-align: center;">Privesc (Linux)</h2>
+        <table style="width: 60%">
+            <tr>
+                <th>Steps</th>
+                <th>Snippets</th>
+            </tr>
+            <tr style="background-color: white;">
+                <td>Last solution</td>
+                <td></td>     
+            </tr>
+        </table>
+
+<!-- Privesc Linux -->
+        <h2 style="text-align: center;" id="privesclinux">Privesc (Linux)</h2>
 
         <table style="width: 60%;">
             <tr>
                 <th>Steps</th>
                 <th>Snippets</th>
+            </tr>
+            <tr style="background-color: white;">
+                <td>Explore <strong>users folders</strong></td>
+                <td></td>     
             </tr>
             <tr style="background-color: white;">
                 <td><strong>Sudo</strong> rights ?</td>
@@ -110,6 +267,10 @@
                 <td><span class="snippet">getcap / -r 2>/dev/null</span></td>     
             </tr>
             <tr style="background-color: white;">
+                <td>Explore <strong>configuration files</strong> (/var/www/)</td>
+                <td></td>     
+            </tr>
+            <tr style="background-color: white;">
                 <td>Some <strong>new services</strong> accessible with localhost ?</td>
                 <td>
                     <span class="snippet">netstat -antp</span><br>
@@ -117,12 +278,25 @@
                     <span class="snippet">ssh -L 9999:127.0.0.1:9000 user@ip_target</span>
                 </td>     
             </tr>
-            <tr>
+            <tr style="background-color: white;">
                 <td>
                     Any new ideas for escalating privileges ? See <strong><a href="https://github.com/peass-ng/PEASS-ng/releases/" target="_blank">linpeas.sh</a></strong>
                 </td>
                 <td></td>
             </tr>
         </table>
-        
+<!-- Privesc Windows -->
+        <h2 style="text-align: center;" id="privescwindows">Privesc (Windows)</h2>
+
+        <table style="width: 60%;">
+            <tr>
+                <th>Steps</th>
+                <th>Snippets</th>
+            </tr>
+            <tr style="background-color: white;">
+                <td>Steps for Windows privesc</td>
+                <td></td>     
+            </tr>
+        </table>
+
 {% endblock %}

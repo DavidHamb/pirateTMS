@@ -7,7 +7,7 @@ PICKLIST_STYLE_PARAMETERS = 'width: 500px; padding: 10px 30px; font-size: 16px; 
 class TargetForm(forms.ModelForm):
     class Meta:
         model = Target
-        fields = ['name', 'ip', 'hostname', 'url', 'type', 'status', 'description']
+        fields = ['name', 'ip', 'hostname', 'url', 'type', 'status', 'operating_system', 'description']
 
         widgets = {
             'name': forms.TextInput(attrs={
@@ -36,6 +36,10 @@ class TargetForm(forms.ModelForm):
                 }),
             'status': forms.Select(attrs={
                 'class': "form-control", 
+                'style': PICKLIST_STYLE_PARAMETERS,
+                }),
+            'operating_system': forms.Select(attrs={
+                'class': "form-control",
                 'style': PICKLIST_STYLE_PARAMETERS,
                 }),
             'description': forms.Textarea(attrs={

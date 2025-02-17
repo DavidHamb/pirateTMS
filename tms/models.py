@@ -12,10 +12,16 @@ class Target(models.Model):
         CAPTURE_THE_FLAG = 'Capture the Flag'
         IN_THE_WILD = 'In the Wild'
         BUG_BOUNTY = 'Bug Bounty' 
+    
+    class operating_system(models.TextChoices):
+        LINUX = 'Linux'
+        WINDOWS = 'Windows'
+        UNKNOWN = 'Unknown'
 
     name = models.fields.CharField(max_length=100, null=True)
     url = models.fields.URLField(null=True)
     description = models.fields.CharField(max_length=1000, null=True, blank=True)
+    operating_system = models.fields.CharField(choices=operating_system.choices, max_length=7, default='Unknown')
     ip = models.fields.CharField(max_length=15, null=True)
     hostname = models.fields.CharField(max_length=100, null=True, blank=True)
     status = models.fields.CharField(choices=status.choices, max_length=8, default='Intact')

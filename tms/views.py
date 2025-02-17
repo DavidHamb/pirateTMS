@@ -12,7 +12,7 @@ def targets(request):
     if request.method == 'POST':
         search_query = request.POST['search_query']
         if search_query != "":
-            targets =  Target.objects.filter(name__contains=search_query) | Target.objects.filter(description__contains=search_query) | Target.objects.filter(type__contains=search_query) | Target.objects.filter(status__contains=search_query) 
+            targets =  Target.objects.filter(name__contains=search_query) | Target.objects.filter(description__contains=search_query) | Target.objects.filter(type__contains=search_query) | Target.objects.filter(status__contains=search_query) | Target.objects.filter(operating_system__contains=search_query) 
             targets = targets.order_by('-id').values()
             messages.add_message(request, messages.INFO, str(len(targets))+" result(s) for '"+search_query+"'")
             return render(request, 'tms/targets.html', {'targets': targets, 'query': search_query})

